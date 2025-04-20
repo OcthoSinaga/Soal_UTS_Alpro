@@ -1,1 +1,79 @@
-//Kerjakan soal nomor 1 disini (Hapus komentar ini)
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Fungsi untuk mengecek validitas kartu
+bool validasiNusantara(string kartu) {
+    int total = 0;
+    int panjang = kartu.length();
+
+    // Langkah 1 dan 2: Proses digit kedua dari belakang, kelipatan 2
+    for (int i = panjang - 2; i >= 0; i -= 2) {
+        int digit = (kartu[i] - '0') * 2;
+        if (digit > 9) {
+            digit = digit / 10 + digit % 10; // jumlah digitnya
+        }
+        total += digit;
+    }
+
+    // Langkah 4: Tambah digit yang tidak dikalikan di langkah 1
+    for (int i = panjang - 1; i >= 0; i -= 2) {
+        total += kartu[i] - '0';
+    }
+
+    // Langkah 5: Cek apakah habis dibagi 10
+    return (total % 10 == 0);
+}
+
+int main() {
+    string nomor;
+    cout << "Masukkan nomor kartu digital: ";
+    cin >> nomor;
+
+    string tipe = "Tidak Diketahui";
+
+    if (nomor.substr(0, 2) == "65" && nomor.length() == 14) {
+        tipe = "NUSANTARA";
+    } else if ((nomor.substr(0, 2) == "77" || nomor.substr(0, 2) == "78") && nomor.length() == 16) {
+        tipe = "GARUDA";
+    } else if (nomor.substr(0, 2) == "91" && nomor.length() == 15) {
+        tipe = "MERDEKA";
+    }
+
+    cout << "Tipe kartu: " << tipe << endl;
+
+    if (tipe == "Tidak Diketahui") {
+        cout << "Nomor kartu TIDAK VALID." << endl;
+    } else {
+        if (validasiNusantara(nomor)) {
+            cout << "Nomor kartu VALID." << endl;
+        } else {
+            cout << "Nomor kartu TIDAK VALID." << endl;
+        }
+    }
+
+    return 0;
+}
+
+/* =============== *ALGORIMA PENYELESAIAN* ===============
+1.Identifikasi tipe kartu:
+jika:- Awal 65 dan panjang 14 digit = Tipe nusantara.
+      -Awal 77 atau 78 dan panjang 16 digit = Tipe garuda.
+      -Awal 91 dan panjang 15 digit = Tipe merdeka.
+      -jika tidak sesuai maka kartu langsung dianggap tidak valid.
+
+2.Validasi Algoritma Nusantara:
+langkah-langkahnya:-Mulai dari digit kedua dari belakang,ambil selang-seling digit,dan dikalikan 2.
+                   -Jika hasil kali lebih dari 9,jumlahkan digit hasilnya.
+                   -Jumlahkan semua hasil daru langkah ke2.
+                   -Jumlahkan semua digit lain yang tidak dikalikan di langkah 1.
+                   -Jumlahkan total dari langkah 3 + langkah 4.
+                   -Jika totalnya habis dibagi 10 (total % 10 == 0) maka nomor kartu valid
+                   -Jika tidak habis dibagi 10 maka nomor kartu tidak valid
+===========================================================
+*/
+
+
+
+
