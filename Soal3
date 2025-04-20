@@ -33,11 +33,12 @@ int main() {
         namaHari = "Akhir Pekan";
         if (member == 1) { namaMember = "Biasa"; poin = 2; }
         else if (member == 2) { namaMember = "Silver"; poin = 3; }
-        
+        else if (member == 3) { namaMember = "Gold"; poin = 5; }
     } else if (hari == 3) {
         namaHari = "Hari Libur Nasional";
         if (member == 1) { namaMember = "Biasa"; poin = 3; }
-        
+        else if (member == 2) { namaMember = "Silver"; poin = 5; }
+        else if (member == 3) { namaMember = "Gold"; poin = 7; }
     }
 
     if (poin == 0) {
