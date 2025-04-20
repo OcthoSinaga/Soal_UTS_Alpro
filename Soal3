@@ -3,7 +3,8 @@ using namespace std;
 
 int main() {
     long kode;
-    int hari, member, KodeBelanja, poin;
+    int hari, member, KodeBelanja, belanja,
+    poin;
     
     cout << "Kode transaksi (8 digit): ";
     cin >> kode;
@@ -17,7 +18,7 @@ int main() {
     hari = kode / 1000000;                // dua digit pertama
     member = (kode / 10000) % 100;        // digit ke-3 dan ke-4
     KodeBelanja= kode % 10000;           // 4 digit terakhir
-
+    belanja = KodeBelanja * 100000;
 
     poin = 0;
     string namaHari, namaMember;
@@ -27,6 +28,16 @@ int main() {
         namaHari = "Hari Kerja";
         if (member == 1) { namaMember = "Biasa"; poin = 1; }
        
+    } else if (hari == 2) {
+        namaHari = "Akhir Pekan";
+        if (member == 1) { namaMember = "Biasa"; poin = 2; }
+       
+    } else if (hari == 3) {
+        namaHari = "Hari Libur Nasional";
+        if (member == 1) { namaMember = "Biasa"; poin = 3; }
+        
+    }
+
     if (poin == 0) {
         cout << "DATA TIDAK VALID" << endl;
         return 0;
