@@ -1,1 +1,105 @@
-//Kerjakan soal nomor 2 disini (Hapus komentar ini)
+#include <iostream>
+using namespace std;
+
+int main() {
+    char kodeParkir[11];  // 10 digit + null terminator
+    int jamKeluar;
+
+    cout << "Masukkan kode parkir digital (10 digit): ";
+    cin >> kodeParkir;
+
+    cout << "Masukkan jam keluar (format HHMM): ";
+    cin >> jamKeluar;
+
+    // Ambil jenis kendaraan
+    int kodeJenis = (kodeParkir[0] - '0') * 10 + (kodeParkir[1] - '0');
+    string jenis;
+
+    if (kodeJenis == 10) jenis = "Mobil";
+    else if (kodeJenis == 20) jenis = "Motor";
+    else if (kodeJenis == 30) jenis = "Bus";
+    else jenis = "Tidak diketahui";
+
+    // Ambil waktu masuk
+    int jamMasuk = (kodeParkir[2] - '0') * 1000 +
+                   (kodeParkir[3] - '0') * 100 +
+                   (kodeParkir[4] - '0') * 10 +
+                   (kodeParkir[5] - '0');
+
+    // Ambil lokasi parkir
+    int lokasi = (kodeParkir[6] - '0') * 1000 +
+                 (kodeParkir[7] - '0') * 100 +
+                 (kodeParkir[8] - '0') * 10 +
+                 (kodeParkir[9] - '0');
+
+    // Hitung durasi
+    int jam1 = jamMasuk / 100;
+    int menit1 = jamMasuk % 100;
+    int jam2 = jamKeluar / 100;
+    int menit2 = jamKeluar % 100;
+
+    int totalMenit = (jam2 * 60 + menit2) - (jam1 * 60 + menit1);
+    int durasiJam = totalMenit / 60;
+    if (totalMenit % 60 > 0) durasiJam++;  // pembulatan ke atas
+
+    // Hitung biaya
+    int biaya = 0;
+    if (jenis == "Mobil") {
+        biaya = 5000;
+        if (durasiJam > 1) biaya += (durasiJam - 1) * 3000;
+    } else if (jenis == "Motor") {
+        biaya = 3000;
+        if (durasiJam > 1) biaya += (durasiJam - 1) * 2000;
+    } else if (jenis == "Bus") {
+        biaya = 10000;
+        if (durasiJam > 1) biaya += (durasiJam - 1) * 7000;
+    }
+
+    // Tampilkan hasil
+    cout << "\n--- Ringkasan Parkir ---" << endl;
+    cout << "Jenis kendaraan: " << jenis << endl;
+    cout << "Waktu masuk: " << (jamMasuk / 100) << ":" << (jamMasuk % 100) << endl;
+    cout << "Waktu keluar: " << (jamKeluar / 100) << ":" << (jamKeluar % 100) << endl;
+    cout << "Durasi parkir: " << durasiJam << " jam" << endl;
+    cout << "Lokasi parkir: " << lokasi << endl;
+    cout << "Total biaya: Rp " << biaya << endl;
+
+    return 0;
+}
+
+/*
+===============Algoritma Penyelesaian===============
+            Perhitungan Biaya Parkir
+=========================================================
+1.Pengguna diminta memasukkan kode parkir digital terdari 10 digit dan memasukkan jam keluar dengan format HHMM
+
+2.Menentukan jenis kendaraan:
+-Dua digit pertama dari kode parkir dipakai untuk menentukan jenis kendaraan:
+-10 (mobil).
+-20 (motor).
+-30 (bus).
+-jika kode tidak sesuai maka ditetapkan sebagai tidak diketahui
+
+3.Mengambil waktu Masuk:
+-Waktu masuk kendaraan diambil dari 4 digit berikutnya dalam kode parkir (digit ke-3 hingga ke-6).
+
+4.Mengambil Lokasi Parkir:
+-Lokasi parkir diambil dari 4 digit terakhir dalam kode parkir (digit ke-7 hingga ke-10).
+-Lokasi ini disimpan sebagai integer.
+
+5.Menghitung Durasi Parkir:
+-Waktu masuk dan waktu keluar dipecah menjadi jam dan menit.
+-Total menit dihitung dengan mengonversi jam dan menit ke dalam satuan menit total.
+-Selisih antara waktu keluar dan waktu masuk dihitung untuk mendapatkan total menit parkir.
+
+6.Menghitung Biaya Parkir:
+-Biaya dasar ditentukan berdasarkan jenis kendaraan:
+-Mobil: Rp 5.000 untuk 1 jam, Rp 3.000 untuk setiap jam tambahan.
+-Motor: Rp 3.000 untuk 1 jam, Rp 2.000 untuk setiap jam tambahan.
+-Bus: Rp 10.000 untuk 1 jam, Rp 7.000 untuk setiap jam tambahan.
+-Biaya total dihitung berdasarkan durasi parkir.
+
+=============================================================
+*/
+
+
