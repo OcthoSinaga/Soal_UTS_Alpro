@@ -27,11 +27,13 @@ int main() {
     if (hari == 1) {
         namaHari = "Hari Kerja";
         if (member == 1) { namaMember = "Biasa"; poin = 1; }
-       
+        else if (member == 2) { namaMember = "Silver"; poin = 2; }
+        else if (member == 3) { namaMember = "Gold"; poin = 3; }
     } else if (hari == 2) {
         namaHari = "Akhir Pekan";
         if (member == 1) { namaMember = "Biasa"; poin = 2; }
-       
+        else if (member == 2) { namaMember = "Silver"; poin = 3; }
+        
     } else if (hari == 3) {
         namaHari = "Hari Libur Nasional";
         if (member == 1) { namaMember = "Biasa"; poin = 3; }
