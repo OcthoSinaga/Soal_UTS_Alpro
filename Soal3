@@ -1,1 +1,44 @@
-//Kerjakan soal nomor 3 disini (Hapus komentar ini)
+#include <iostream>
+using namespace std;
+
+int main() {
+    long kode;
+    int hari, member, KodeBelanja, poin;
+    
+    cout << "Kode transaksi (8 digit): ";
+    cin >> kode;
+
+    // Checking apakah 8 digit
+    if (kode < 00000000 || kode > 99999999) {
+        cout << "DATA TIDAK VALID" << endl;
+        return 0;
+    }
+
+    hari = kode / 1000000;                // dua digit pertama
+    member = (kode / 10000) % 100;        // digit ke-3 dan ke-4
+    KodeBelanja= kode % 10000;           // 4 digit terakhir
+
+
+    poin = 0;
+    string namaHari, namaMember;
+
+    // Menentukan poin berdasarkan hari dan member
+    if (hari == 1) {
+        namaHari = "Hari Kerja";
+        if (member == 1) { namaMember = "Biasa"; poin = 1; }
+       
+    if (poin == 0) {
+        cout << "DATA TIDAK VALID" << endl;
+        return 0;
+    }
+
+    int totalPoin = (belanja / 100000) * poin;
+
+    // Output
+    cout << "Jenis Hari      : " << namaHari << endl;
+    cout << "Jenis Pelanggan : " << namaMember << endl;
+    cout << "Jumlah Belanja  : Rp " << belanja << endl;
+    cout << "Total Poin      : " << totalPoin << endl;
+
+    return 0;
+}
