@@ -56,3 +56,32 @@ int main() {
 
     return 0;
 }
+
+
+
+/*
+            Algoritma dan Logika Penyelesaian
+
+1. Meminta user menginput kode 8 digit.
+2. Mengecek kode yang dimasukkan 8 digit.
+   - Jika kode transaksi tidak valid, program akan menampilkan "DATA TIDAK VALID" dan berhenti.
+
+3. Kode transaksi dibagi menjadi tiga bagian:
+   -digit ke-1 dan ke-2 (kode transaksi / 1000000) untuk menentukan hari (1 = Hari Kerja, 2 = Akhir Pekan, 3 = Hari Libur Nasional).
+   -Digit ke-3 dan ke-4 (kode transaksi / 10000) % 100 untuk menentukan jenis anggota (1 = Biasa, 2 = Silver, 3 = Gold).
+   -digit ke-5 hingga ke-8 (kode transaksi % 10000) untuk menentukan jumlah belanja (dikalikan dengan 100000 untuk mendapatkan nilai Kelipatan 100.000 rupiah).
+
+4. Dari jenis hari dan jenis anggota, program menentukan jumlah poin yang diperoleh. 
+   -Program menghitung poin sesuai dengan kombinasi hari dan loyalitas anggota.
+
+5. Jika poin tidak ditemukan (poin == 0), program menampilkan pesan "DATA TIDAK VALID" dan berhenti.
+6. Program menghitung total poin yang diperoleh dengan rumus:
+   totalPoin = (jumlah belanja / 100000) * poin;
+
+7. OUTPUT: 
+jenis Hari :
+jenis Pelanggan :
+Jumlah Belanja :
+Total Poin :
+
+*/
