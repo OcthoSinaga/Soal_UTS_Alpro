@@ -1,1 +1,64 @@
-//Kerjakan soal nomor 4 disini (Hapus komentar ini)
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N,i;
+    string S;
+    char hasil;
+
+    // Input jumlah babak
+    cout << "Masukkan jumlah babak: ";
+    cin >> N;
+
+    //input hasil pertandingan
+    cout << "Masukkan hasil pertandingan (A/B/C): ";
+    cin >> S;
+    
+    int poinA = 0, poinB = 0;
+    int streak_A = 0, streak_B = 0;
+
+    for (i = 0; i < N; i++) {
+        hasil = S[i];
+
+        if (hasil == 'A') {
+            poinA += 3;  // Tambah 3 poin untuk pemain A
+            streak_A++;
+            streak_B = 0; // Reset streak kemenangan pemain B
+            if (streak_A == 3) {     // Jika pemain A menang 3 babak berturut-turut
+                poinA += 2;         // Tambah 2 poin bonus untuk A
+                streak_A = 0;
+            }
+        } else if (hasil == 'B') {
+            poinB += 3;     // Tambah streak kemenangan pemain B
+            streak_B++;
+            streak_A = 0;    // Reset streak kemenangan pemain A
+            if (streak_B == 3) {
+                poinB += 2;          // Tambah 2 poin bonus untuk B
+                streak_B = 0;       // Reset streak kemenangan pemain B
+            }
+        } else if (hasil == 'C') {  // hasil seri
+            poinA += 1; // tambah 1 poin untuk pemain A
+            poinB += 1; //tambah 1 poin untuk pemain B
+            streak_A = 0;   //reset streak kemanangan pemain A
+            streak_B = 0;   // Reset steak kemanangan pemain B
+        } else {
+            cout << "Input tidak valid pada karakter ke-" << i+1 << endl;
+            return 1; //Keluar dari program dengan status error 1
+        }
+    }
+    // OutPut total poin
+    cout << "\nPoin A: " << poinA << endl;
+    cout << "Poin B: " << poinB << endl;
+
+    // output pemenang
+    if (poinA > poinB) {
+        cout << "\nPemenangnya adalah pemain A" << endl;
+    } else if (poinB > poinA) {
+        cout << "\nPemenangnya adalah pemain B" << endl;
+    } else {
+        cout << "\nHasil pertandingan Seri!" << endl;
+    }
+return 0;
+}
+
+
