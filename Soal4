@@ -13,7 +13,7 @@ int main() {
     //input hasil pertandingan
     cout << "Masukkan hasil pertandingan (A/B/C): ";
     cin >> S;
-    
+
     int poinA = 0, poinB = 0;
     int streak_A = 0, streak_B = 0;
 
@@ -43,7 +43,7 @@ int main() {
             streak_B = 0;   // Reset steak kemanangan pemain B
         } else {
             cout << "Input tidak valid pada karakter ke-" << i+1 << endl;
-            return 1; //Keluar dari program dengan status error 1
+            return 1; //Keluar dari program dengan status error 
         }
     }
     // OutPut total poin
@@ -62,3 +62,20 @@ return 0;
 }
 
 
+
+/*
+**Algoritma Penyelesaian**:
+1. Input jumlah babak pertandingan (N) dan hasil pertandingan dalam bentuk string (S) yang terdiri dari karakter 'A', 'B', dan 'C'.
+2. Inisialisasi dua variabel poin (poinA dan poinB) untuk menyimpan poin pemain A dan B. Juga inisialisasi variabel streak (streak_A dan streak_B) untuk melacak kemenangan berturut-turut.
+3. Iterasi melalui setiap karakter dalam string S:
+    - Jika karakter 'A' ditemukan, pemain A mendapat 3 poin, streak A bertambah, dan streak B direset. Jika A menang 3 babak berturut-turut, A mendapatkan 2 poin bonus.
+    - Jika karakter 'B' ditemukan, pemain B mendapat 3 poin, streak B bertambah, dan streak A direset. Jika B menang 3 babak berturut-turut, B mendapatkan 2 poin bonus.
+    - Jika karakter 'C' ditemukan, keduanya mendapat 1 poin dan streak direset.
+    - Jika karakter selain 'A', 'B', atau 'C' ditemukan, program mengeluarkan pesan error dan keluar.
+4. Setelah semua babak diproses, program menampilkan total poin untuk pemain A dan B.
+5. Program menentukan pemenang berdasarkan perbandingan poin:
+    - Jika poin A lebih besar, pemain A menang.
+    - Jika poin B lebih besar, pemain B menang.
+    - Jika poin A dan B sama, hasil pertandingan adalah seri.
+6. Program selesai dan mengembalikan nilai 0 sebagai status berhasil.
+/*
